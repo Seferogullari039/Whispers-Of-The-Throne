@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { ActNumber } from "@/lib/acts";
 import {
+  enableMusicFromUserGesture,
+  isMusicUnlockedByUser,
   playAudioUnlockChime,
   setAudioEnabled,
   setMusicEnabled,
-  startAmbientMusic,
   stopAmbientMusic,
   unlockAudio,
 } from "@/lib/audio";
@@ -16,11 +16,12 @@ import {
   setMusicEnabledSetting,
   setVibrationEnabledSetting,
 } from "@/lib/gameSettings";
+import { APP_VERSION_FULL } from "@/lib/version";
 
 type SettingsMenuProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  currentAct?: ActNumber;
+  onStartMusicForPhase?: () => void;
   onClearSave: () => void;
   onReturnToMainMenu: () => void;
   showGearButton?: boolean;
@@ -50,7 +51,7 @@ export function SettingsGearButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="settings-menu-btn pointer-events-auto relative flex shrink-0 items-center justify-center rounded-md border border-amber-700/25 bg-black/20 text-amber-200/40 backdrop-blur-sm transition active:scale-[0.96] hover:border-amber-600/35 hover:bg-black/30 hover:text-amber-200/60"
+      className="settings-menu-btn pointer-events-auto relative flex shrink-0 items-center justify-center rounded-md border border-amber-700/20 bg-black/15 text-amber-200/35 backdrop-blur-sm transition active:scale-[0.96] hover:border-amber-600/30 hover:bg-black/25 hover:text-amber-200/55"
       aria-label="Ayarlar"
     >
       <SettingsMenuIcon />
@@ -117,7 +118,7 @@ function SettingsActionButton({
 export function SettingsMenu({
   open,
   onOpenChange,
-  currentAct = 1,
+  onStartMusicForPhase,
   onClearSave,
   onReturnToMainMenu,
   showGearButton = true,
@@ -130,7 +131,7 @@ export function SettingsMenu({
   useEffect(() => {
     const s = getGameSettings();
     setAudioOn(s.audioEnabled);
-    setMusicOn(s.musicEnabled);
+    setMusicOn(s.musicEnabled && isMusicUnlockedByUser());
     setVibrationOn(s.vibrationEnabled);
     setHydrated(true);
   }, [open]);
@@ -146,19 +147,19 @@ export function SettingsMenu({
     setAudioOn(next);
   }, [audioOn]);
 
-  const toggleMusic = useCallback(async () => {
+  const toggleMusic = useCallback(() => {
     const next = !musicOn;
     if (next) {
-      await unlockAudio();
-      setMusicEnabled(true);
       setMusicOn(true);
-      await startAmbientMusic(currentAct, true);
+      enableMusicFromUserGesture(() => {
+        onStartMusicForPhase?.();
+      });
       return;
     }
     setMusicEnabled(false);
     setMusicOn(false);
     stopAmbientMusic();
-  }, [currentAct, musicOn]);
+  }, [musicOn, onStartMusicForPhase]);
 
   const toggleVibration = useCallback(() => {
     const next = !vibrationOn;
@@ -196,14 +197,14 @@ export function SettingsMenu({
 
             <div className="mt-3 divide-y divide-amber-900/35 border-y border-amber-900/30">
               <SettingToggleRow
-                label="Ses"
+                label="Ses Efektleri"
                 enabled={audioOn}
                 onToggle={() => void toggleAudio()}
               />
               <SettingToggleRow
                 label="Müzik"
                 enabled={musicOn}
-                onToggle={() => void toggleMusic()}
+                onToggle={toggleMusic}
               />
               <SettingToggleRow
                 label="Titreşim"
@@ -236,6 +237,9 @@ export function SettingsMenu({
             </div>
 
             <div className="mt-4 space-y-1.5 border-t border-amber-900/25 pt-3">
+              <p className="text-center text-[10px] font-medium tracking-wide text-amber-500/55">
+                {APP_VERSION_FULL}
+              </p>
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-amber-500/40">
                 Yakında
               </p>

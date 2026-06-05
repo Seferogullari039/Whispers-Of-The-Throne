@@ -12,7 +12,7 @@ type SkillOrbsProps = {
 export function SkillOrbs({ skills, flashes = {} }: SkillOrbsProps) {
   return (
     <div
-      className="flex w-full items-end justify-between gap-0.5 px-0.5"
+      className="skill-orbs-row flex w-full items-end justify-between"
       role="group"
       aria-label="Güç göstergeleri"
     >
@@ -26,7 +26,7 @@ export function SkillOrbs({ skills, flashes = {} }: SkillOrbsProps) {
             fill={clampSkillValue(skills[key])}
             flash={flashes[key]}
           />
-          <span className="-mt-0.5 text-[11px] font-medium leading-none tracking-[0.03em] text-amber-400/68">
+          <span className="skill-orbs-label text-[12px] font-medium leading-tight tracking-[0.02em] text-amber-400/72">
             {SKILL_LABELS[key]}
           </span>
         </div>

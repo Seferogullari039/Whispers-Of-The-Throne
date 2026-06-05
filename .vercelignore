@@ -1,0 +1,2 @@
+# Web deploy: OGG only (~3 MB). WAV kept in git for local dev fallback.
+public/audio/*.wav

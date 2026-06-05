@@ -21,10 +21,12 @@ import { getActInfo } from "@/lib/acts";
 import {
   initAudio,
   isMusicEnabled,
-  startAmbientMusic,
+  isMusicUnlockedByUser,
+  startMusicForCurrentPhase,
   playEndingSound,
   playResultSound,
   unlockAudio,
+  type GameMusicPhase,
 } from "@/lib/audio";
 import { getSkillFlashes, type SkillFlashes } from "@/lib/skillFlash";
 import { getRankTitle } from "@/lib/ranks";
@@ -50,12 +52,21 @@ import { INITIAL_PLAYER_LEVEL, MAX_PLAYER_LEVEL } from "@/types/game";
 import { isVibrationEnabled } from "@/lib/gameSettings";
 import { SettingsGearButton, SettingsMenu } from "@/components/SettingsMenu";
 import { DevPanel } from "@/components/DevPanel";
+import { MusicDebugHud } from "@/components/MusicDebugHud";
 import { EndingScreen } from "@/components/EndingScreen";
 import { OriginIntroScreen } from "@/components/OriginIntroScreen";
 import { ResultScreen } from "@/components/ResultScreen";
 import { SkillOrbs } from "@/components/SkillOrbs";
 import { HeroScreen } from "@/components/HeroScreen";
+import { IntroSplash } from "@/components/IntroSplash";
 import { StoryCard } from "@/components/StoryCard";
+import { markIntroSeenThisSession, shouldShowIntroCinematic } from "@/lib/introSession";
+
+const INTRO_STAGE_CLASS =
+  "intro-stage fixed inset-0 z-[200] h-dvh w-full overflow-hidden bg-[#060304]";
+
+const BOOT_SHELL_CLASS =
+  "game-shell mx-auto flex h-dvh max-h-dvh w-full max-w-[430px] flex-col overflow-hidden bg-[#060304]";
 
 type GameSession = {
   origin: Origin;
@@ -72,6 +83,14 @@ function createGameSession(): GameSession {
     deck: buildDeckForOrigin(origin),
     skills: createSkillsFromOrigin(origin),
   };
+}
+
+function toGameMusicPhase(phase: GamePhase): GameMusicPhase {
+  if (phase === "hero") return "hero";
+  if (phase === "origin_intro") return "origin_intro";
+  if (phase === "result") return "result";
+  if (phase === "ending") return "ending";
+  return "playing";
 }
 
 function createFreshRunState() {
@@ -91,7 +110,8 @@ function createFreshRunState() {
 }
 
 export function GameScreen() {
-  const [hydrated, setHydrated] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
   const [savePreview, setSavePreview] = useState<ReturnType<
     typeof getSavedGamePreview
   >>(null);
@@ -112,10 +132,7 @@ export function GameScreen() {
   const isHero = phase === "hero";
   const isEnding = phase === "ending" && activeEnding !== null;
   const isResult = phase === "result" && pendingResult !== null;
-  const showSkillBar =
-    !isHero &&
-    phase !== "origin_intro" &&
-    (phase === "playing" || isResult || isEnding);
+  const showSkillBar = phase === "playing";
   const rankTitle = useMemo(() => getRankTitle(playerLevel), [playerLevel]);
   const actInfo = useMemo(() => getActInfo(playerLevel), [playerLevel]);
   const [devTestNote, setDevTestNote] = useState<string | null>(null);
@@ -313,10 +330,24 @@ export function GameScreen() {
     initAudio();
   }, []);
 
+  const startMusicNow = useCallback(
+    (opts?: { userGesture?: boolean }) => {
+      startMusicForCurrentPhase(toGameMusicPhase(phase), actInfo.act, opts);
+    },
+    [phase, actInfo.act],
+  );
+
   useEffect(() => {
-    if (!showSkillBar || !isMusicEnabled()) return;
-    void startAmbientMusic(actInfo.act);
-  }, [actInfo.act, phase, showSkillBar]);
+    if (phase === "hero" && showIntro) return;
+    if (!isMusicEnabled() || !isMusicUnlockedByUser()) return;
+    startMusicForCurrentPhase(toGameMusicPhase(phase), actInfo.act);
+  }, [phase, actInfo.act, showIntro]);
+
+  const handleIntroComplete = useCallback(() => {
+    markIntroSeenThisSession();
+    setShowIntro(false);
+    setPhase("hero");
+  }, []);
 
   useEffect(() => {
     if (Object.keys(skillFlashes).length === 0) return;
@@ -333,8 +364,10 @@ export function GameScreen() {
         clearGameState();
       }
     }
-    setPhase("hero");
-    setHydrated(true);
+    if (shouldShowIntroCinematic()) {
+      setShowIntro(true);
+    }
+    setHasMounted(true);
   }, []);
 
   const handleContinueSaved = useCallback(() => {
@@ -602,22 +635,28 @@ export function GameScreen() {
     setPhase("hero");
   }, [handleRestart, persistGame, phase]);
 
-  if (!hydrated) {
+  if (!hasMounted) {
+    return <div className={BOOT_SHELL_CLASS} />;
+  }
+
+  if (showIntro) {
     return (
-      <div className="game-shell mx-auto flex h-dvh max-h-dvh w-full max-w-[430px] flex-col overflow-hidden px-4 pt-[max(1rem,env(safe-area-inset-top))]" />
+      <div className={INTRO_STAGE_CLASS}>
+        <IntroSplash onComplete={handleIntroComplete} />
+      </div>
     );
   }
 
   return (
     <div
-      className={`game-shell game-act-${isHero ? 1 : actInfo.act} relative mx-auto flex h-dvh max-h-dvh w-full flex-col overflow-hidden ${
+      className={`game-shell game-act-${isHero ? 1 : actInfo.act} relative mx-auto flex h-dvh max-h-dvh min-h-dvh w-full flex-col overflow-hidden ${
         isHero
           ? "max-w-none px-0 pb-0 pt-0"
           : "max-w-[430px] px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-[max(0.25rem,env(safe-area-inset-top))]"
       }`}
     >
       {!isHero && (
-        <div className="game-settings-bar relative z-[45] flex h-9 shrink-0 items-center justify-end pr-[max(0,env(safe-area-inset-right))]">
+        <div className="game-settings-bar relative z-[45] flex shrink-0 items-center justify-end pr-[max(0,env(safe-area-inset-right))]">
           <SettingsGearButton onClick={() => setSettingsOpen(true)} />
         </div>
       )}
@@ -625,19 +664,21 @@ export function GameScreen() {
       <SettingsMenu
         open={settingsOpen}
         onOpenChange={setSettingsOpen}
-        currentAct={actInfo.act}
+        onStartMusicForPhase={() => startMusicNow({ userGesture: true })}
         onClearSave={handleSettingsClearSave}
         onReturnToMainMenu={handleSettingsReturnToMainMenu}
         showGearButton={false}
       />
 
       <div
-        className={`flex min-h-0 flex-1 flex-col transition-[filter] duration-200 ${
+        className={`game-stage flex min-h-0 flex-1 flex-col transition-[filter] duration-200 ${
           settingsOpen && !isHero ? "pointer-events-none blur-[4px]" : ""
-        } ${settingsOpen && isHero ? "pointer-events-none" : ""}`}
+        } ${settingsOpen && isHero ? "pointer-events-none" : ""} ${
+          isHero ? "h-full min-h-0" : ""
+        }`}
       >
       {phase === "playing" && (
-        <p className="mb-1 shrink-0 text-center text-[10px] font-medium tracking-wide text-amber-200/68">
+        <p className="game-level-row mb-0.5 shrink-0 truncate text-center text-[10px] font-medium tracking-wide text-amber-200/68">
           <span className="tabular-nums text-amber-100/88">
             Seviye {playerLevel}
           </span>
@@ -649,12 +690,18 @@ export function GameScreen() {
       )}
 
       {showSkillBar && (
-        <div className="mb-0.5 shrink-0">
+        <div className="game-skill-hud mb-0 shrink-0">
           <SkillOrbs skills={skills} flashes={skillFlashes} />
         </div>
       )}
 
-      <main className={isHero ? "flex min-h-0 flex-1 flex-col" : "game-play-main"}>
+      <main
+        className={
+          isHero
+            ? "flex h-full min-h-0 flex-1 flex-col overflow-hidden"
+            : "game-play-main"
+        }
+      >
         {isHero ? (
           <HeroScreen
             hasSave={savePreview !== null}
@@ -711,18 +758,23 @@ export function GameScreen() {
       )}
       </div>
 
-      <DevPanel
-        origin={origin}
-        currentCardId={currentCard?.id ?? null}
-        phase={phase}
-        playerLevel={playerLevel}
-        rank={rankTitle}
-        skills={skills}
-        flags={flags}
-        seenCardCount={seenCardIds.size}
-        turnsPlayed={turnsPlayed}
-        actions={devActions}
-      />
+      {isDev && (
+        <>
+          <DevPanel
+            origin={origin}
+            currentCardId={currentCard?.id ?? null}
+            phase={phase}
+            playerLevel={playerLevel}
+            rank={rankTitle}
+            skills={skills}
+            flags={flags}
+            seenCardCount={seenCardIds.size}
+            turnsPlayed={turnsPlayed}
+            actions={devActions}
+          />
+          <MusicDebugHud />
+        </>
+      )}
     </div>
   );
 }

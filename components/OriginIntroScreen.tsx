@@ -21,16 +21,18 @@ export function OriginIntroScreen({ origin, onBegin }: OriginIntroScreenProps) {
         className="rounded-none border-0 border-b border-amber-800/40"
       />
 
-      <div className="flex min-h-0 flex-1 flex-col p-3.5">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-400/80">
+      <div className="flex min-h-0 flex-1 flex-col p-3 pt-2.5">
+        <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-400/80">
           Kökenin
         </p>
-        <h2 className="mt-0.5 text-xl font-semibold leading-tight text-amber-50">
+        <h2 className="mt-0.5 shrink-0 text-xl font-semibold leading-tight text-amber-50">
           {origin.name}
         </h2>
-        <p className="text-sm font-medium text-amber-300/90">{origin.title}</p>
+        <p className="shrink-0 text-sm font-medium text-amber-300/90">
+          {origin.title}
+        </p>
 
-        <p className="mt-2 min-h-0 flex-1 overflow-hidden text-sm leading-relaxed text-amber-100/85">
+        <p className="origin-description mt-2 min-h-0 flex-1 overflow-y-auto overscroll-contain text-sm leading-relaxed text-amber-100/85 [-webkit-overflow-scrolling:touch]">
           {origin.description}
         </p>
 
@@ -38,11 +40,11 @@ export function OriginIntroScreen({ origin, onBegin }: OriginIntroScreenProps) {
           Baş Sefir öldü. Saray zayıflık kokuyor.
         </p>
 
-        <div className="mt-3 flex shrink-0 justify-center">
+        <div className="mt-2.5 flex shrink-0 justify-center">
           <button
             type="button"
             onClick={onBegin}
-            className="hero-menu-link origin-begin-link font-heading min-h-0 px-3 py-1.5 text-[10px] font-semibold uppercase text-amber-200/78 transition duration-300 active:scale-105 hover:scale-105"
+            className="game-cta-link hero-menu-link origin-begin-link font-heading flex min-h-[44px] min-w-[44px] items-center justify-center px-5 py-2 text-[11px] font-semibold uppercase text-amber-200/82"
           >
             Başla
           </button>

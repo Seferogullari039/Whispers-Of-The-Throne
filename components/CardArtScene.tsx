@@ -17,6 +17,7 @@ type CardArtSceneProps = {
   aspectClass?: string;
   showDevPrompt?: boolean;
   compact?: boolean;
+  heroBackdrop?: boolean;
 };
 
 export function CardArtScene({
@@ -30,6 +31,7 @@ export function CardArtScene({
   aspectClass = CARD_PORTRAIT_ART_CLASS,
   showDevPrompt = false,
   compact = false,
+  heroBackdrop = false,
 }: CardArtSceneProps) {
   const [imgFailed, setImgFailed] = useState(false);
   const [imgVisible, setImgVisible] = useState(false);
@@ -107,7 +109,13 @@ export function CardArtScene({
         }}
       />
       <div className="card-art-gleam pointer-events-none absolute inset-0 z-[3]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-[50%] bg-gradient-to-t from-black/92 via-black/40 to-transparent" />
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-[4] bg-gradient-to-t to-transparent ${
+          heroBackdrop
+            ? "hero-art-bottom-fade h-[38%] from-black/55 via-black/20"
+            : "h-[50%] from-black/92 via-black/40"
+        }`}
+      />
 
       {label && !compact && (
         <span className="absolute left-3 top-2.5 z-[5] text-[8px] font-semibold uppercase tracking-[0.22em] text-amber-200/35">

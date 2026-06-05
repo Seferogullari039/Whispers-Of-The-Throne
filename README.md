@@ -40,6 +40,36 @@ npm run export:image-prompts
 
 Bu komut `public/card-art/generated-prompts.json` ve `generated-prompts.md` dosyalarını yeniler. Üretilen JPG dosyalarını `filename` alanındaki isimle `public/card-art/` klasörüne kaydedin.
 
+## Ambient müzik
+
+Geliştirmede kaynak olarak **procedural WAV** üretilir; web alpha / deploy için **OGG (Vorbis)** kullanılır. Oyun önce `.ogg` dener, yoksa `.wav` fallback.
+
+```bash
+# Kaynak loop'ları üret (~55 MB WAV, development)
+npm run generate:audio
+
+# Web için OGG'ye dönüştür (~1–2 MB / parça, ffmpeg gerekir)
+npm run optimize:audio
+```
+
+`optimize:audio` için [ffmpeg](https://ffmpeg.org/) PATH'te olmalı veya `npm install --save-dev ffmpeg-static` ile proje içi binary kullanılabilir. ffmpeg yoksa script uyarı verir ve build'i bozmaz; oyun WAV fallback ile çalışır.
+
+Dosyalar: `public/audio/*.ogg` (web), `public/audio/*.wav` (development / fallback).
+
+**Vercel deploy:** `.vercelignore` excludes `public/audio/*.wav` (~55 MB). OGG dosyaları deploy edilir; localde WAV fallback çalışmaya devam eder.
+
+**Müzik test (development):** Sol altta `MusicDebugHud` — aktif track, Müzik/SFX durumu, master volume.
+
+```text
+Hero → Ayarlar → Müzik Aç     → menu-theme.ogg
+Yeni Oyun → Origin/Playing    → act-1-ashes.ogg (crossfade)
+DevPanel → +Seviye            → act değişince crossfade
+Müzik Kapat                   → durur
+Ses Efektleri Kapat           → swipe/result SFX yok (müzik ayrı)
+```
+
+Master müzik sesi varsayılan **0.45** (`musicVolume` in localStorage, Settings slider için hazır).
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

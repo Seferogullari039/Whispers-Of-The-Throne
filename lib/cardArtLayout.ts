@@ -1,3 +1,3 @@
-/** Portrait kart görseli — iPhone odaklı, büyük portre alan */
+/** Portrait kart görseli — responsive yükseklik globals.css `.card-portrait-art` ile */
 export const CARD_PORTRAIT_ART_CLASS =
-  "aspect-[9/16] w-full min-h-[280px] max-h-[min(64dvh,620px)] shrink-0";
+  "card-portrait-art aspect-[9/16] w-full shrink-0";

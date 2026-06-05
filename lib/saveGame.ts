@@ -99,7 +99,12 @@ function resolveCards(ids: string[]): StoryCardData[] {
 }
 
 function isPersistablePhase(phase: GamePhase): boolean {
-  return phase !== "hero" && phase !== "start_menu" && phase !== "ending";
+  return (
+    phase !== "intro" &&
+    phase !== "hero" &&
+    phase !== "start_menu" &&
+    phase !== "ending"
+  );
 }
 
 export function buildSavedGameState(input: GameSaveInput): SavedGameState {

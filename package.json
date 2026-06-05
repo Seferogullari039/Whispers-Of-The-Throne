@@ -1,14 +1,16 @@
 {
   "name": "whispers-of-the-throne",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "export": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint app components lib types",
     "generate:icons": "node scripts/generate-pwa-icons.mjs",
+    "generate:audio": "node scripts/generate-audio.mjs",
+    "optimize:audio": "node scripts/optimize-audio.mjs",
     "export:image-prompts": "node scripts/sync-card-image-keys.mjs && node scripts/generate-cards.mjs && node scripts/export-image-prompts.mjs",
     "cap:sync": "npm run export && npx cap sync",
     "cap:add:android": "npx cap add android",
@@ -28,6 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "ffmpeg-static": "^5.3.0",
     "playwright": "^1.60.0",
     "tailwindcss": "^4",
     "typescript": "^5"

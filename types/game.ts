@@ -63,6 +63,7 @@ export type Origin = {
 };
 
 export type GamePhase =
+  | "intro"
   | "hero"
   | "start_menu"
   | "origin_intro"

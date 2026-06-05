@@ -61,7 +61,7 @@ function DevPanelContent({
   const flagEntries = Object.entries(flags);
 
   return (
-    <div className="pointer-events-none fixed right-3 top-[calc(max(0.75rem,env(safe-area-inset-top))+3rem)] z-50 flex w-52 max-w-[calc(100vw-1.5rem)] flex-col items-end">
+    <div className="game-fixed-overlay pointer-events-none fixed right-3 top-[calc(max(0.75rem,env(safe-area-inset-top))+3rem)] z-50 flex w-52 max-w-[calc(100vw-1.5rem)] flex-col items-end">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

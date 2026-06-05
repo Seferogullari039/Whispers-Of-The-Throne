@@ -15,6 +15,7 @@
 html,
 body {
   height: 100%;
+  min-height: 100dvh;
   overflow: hidden;
 }
 
@@ -69,17 +70,24 @@ body::before {
   background-size: 200px 200px;
 }
 
-.game-shell > * {
+.game-shell > .game-stage {
   position: relative;
   z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.game-fixed-overlay,
+.settings-overlay {
+  position: fixed;
+}
+
+.game-shell.game-act-1::after {
+  opacity: 0;
 }
 
 .game-shell.game-act-1 {
-  background:
-    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(90, 82, 72, 0.45), transparent 58%),
-    radial-gradient(ellipse 90% 55% at 10% 100%, rgba(35, 32, 28, 0.5), transparent),
-    radial-gradient(ellipse 70% 50% at 95% 60%, rgba(50, 45, 40, 0.25), transparent),
-    #0a0908;
+  background: #0a0908;
 }
 
 .game-shell.game-act-2 {
@@ -119,14 +127,111 @@ body::before {
   min-height: 0;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: stretch;
   align-items: stretch;
   overflow: hidden;
 }
 
+.game-settings-bar {
+  min-height: 44px;
+  margin-bottom: -0.125rem;
+}
+
+.game-skill-hud {
+  padding-top: 0.125rem;
+}
+
+.game-level-row {
+  padding-inline: 0.125rem;
+}
+
+/* Kart portre görseli — responsive yükseklik */
+.card-portrait-art {
+  min-height: 190px;
+  max-height: min(52dvh, 620px);
+}
+
+@media (max-height: 700px) {
+  .card-portrait-art {
+    min-height: 160px;
+    max-height: 42dvh;
+  }
+}
+
+/* Skill HUD — responsive ölçek */
+:root {
+  --skill-orb-size: 76px;
+  --skill-icon-size: 56px;
+}
+
+@media (max-width: 390px) {
+  :root {
+    --skill-orb-size: 62px;
+    --skill-icon-size: 46px;
+  }
+}
+
+.skill-orbs-row {
+  gap: clamp(0.25rem, 2vw, 0.75rem);
+  padding-inline: clamp(0, 1vw, 0.25rem);
+}
+
+.skill-orbs-label {
+  margin-top: -0.125rem;
+  font-size: clamp(11px, 2.8vw, 12px);
+}
+
+.skill-symbol {
+  width: var(--skill-orb-size);
+  height: var(--skill-orb-size);
+  max-width: 100%;
+}
+
+.skill-symbol-svg {
+  width: var(--skill-icon-size);
+  height: var(--skill-icon-size);
+}
+
+/* Premium CTA — altın metin / ince çerçeve */
+.game-cta-link {
+  letter-spacing: 0.22em;
+  border: 1px solid rgba(217, 160, 50, 0.32);
+  border-radius: 0.625rem;
+  background: rgba(0, 0, 0, 0.2);
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.2s ease;
+}
+
+.game-cta-link:hover,
+.game-cta-link:focus-visible {
+  border-color: rgba(232, 200, 120, 0.48);
+  background: rgba(201, 162, 39, 0.08);
+  color: rgb(255 248 235);
+}
+
+.game-cta-link-bad {
+  border-color: rgba(190, 80, 90, 0.35);
+  color: rgba(254, 205, 211, 0.88);
+}
+
+.game-cta-link-good {
+  border-color: rgba(80, 170, 120, 0.35);
+  color: rgba(200, 240, 215, 0.88);
+}
+
+.game-cta-link-true {
+  border-color: rgba(220, 180, 60, 0.45);
+  color: rgba(255, 240, 180, 0.92);
+}
+
 .settings-menu-btn {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .origin-begin-link {
@@ -373,26 +478,70 @@ body::before {
 }
 
 /* Hero giriş ekranı */
+.hero-screen {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 1;
+  background-color: #0a0908;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-bg-fallback {
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 40%, rgba(72, 28, 38, 0.45), transparent 65%),
+    linear-gradient(180deg, #0a0406 0%, #060304 50%, #030203 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  gap: 0;
+}
+
 .hero-title-block {
   text-wrap: balance;
+  max-height: 25dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .hero-title {
-  font-size: clamp(3.25rem, 11vw, 5.5rem);
-  line-height: 0.9;
-  letter-spacing: 0.12em;
-  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.92);
+  font-size: clamp(1.75rem, 7.15vw, 3.575rem);
+  line-height: 1.08;
+  letter-spacing: 0.07em;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.9);
+  word-spacing: 0.04em;
 }
 
 .hero-slogan {
-  font-size: clamp(0.82rem, 3.6vw, 1.05rem);
-  letter-spacing: 0.38em;
-  white-space: nowrap;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+  font-size: clamp(0.72rem, 2.85vw, 0.92rem);
+  letter-spacing: 0.16em;
+  text-wrap: balance;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
 .hero-menu-link {
-  letter-spacing: 0.38em;
+  letter-spacing: 0.22em;
   text-shadow: 0 0 0 transparent;
 }
 
@@ -411,19 +560,85 @@ body::before {
     0 0 28px rgba(201, 162, 39, 0.3);
 }
 
-@media (max-width: 430px) {
+/* iPhone SE — 375×667 / kısa viewport */
+@media (max-height: 670px) {
+  .hero-title-block {
+    max-height: 22dvh;
+  }
+
   .hero-title {
-    font-size: clamp(2.85rem, 10.5vw, 4.75rem);
-    letter-spacing: 0.07em;
+    font-size: clamp(1.55rem, 6.2vw, 1.95rem);
+    letter-spacing: 0.05em;
+    line-height: 1.06;
   }
 
   .hero-slogan {
-    letter-spacing: 0.22em;
-    font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+    font-size: clamp(0.65rem, 2.6vw, 0.78rem);
+    letter-spacing: 0.12em;
+    margin-top: 0.375rem;
+  }
+
+  .hero-actions {
+    margin-top: 1rem;
   }
 
   .hero-menu-link {
-    letter-spacing: 0.22em;
+    letter-spacing: 0.14em;
+    font-size: 10px;
+    min-height: 42px;
+    padding-block: 0.375rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: clamp(1.45rem, 5.8vw, 1.85rem);
+  }
+
+  .hero-slogan {
+    letter-spacing: 0.1em;
+    font-size: 0.62rem;
+  }
+}
+
+/* 390×844 class phones */
+@media (min-width: 390px) and (min-height: 800px) and (max-height: 860px) {
+  .hero-title {
+    font-size: clamp(1.85rem, 6.8vw, 2.35rem);
+  }
+
+  .hero-slogan {
+    font-size: clamp(0.74rem, 2.9vw, 0.86rem);
+    letter-spacing: 0.14em;
+  }
+
+  .hero-actions {
+    margin-top: 1.25rem;
+  }
+}
+
+/* 412×915 Android / large mobile */
+@media (min-width: 412px) and (min-height: 880px) {
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 2.65rem);
+  }
+
+  .hero-slogan {
+    font-size: clamp(0.78rem, 2.8vw, 0.92rem);
+  }
+
+  .hero-title-block {
+    max-width: min(92vw, 24rem);
+  }
+
+  .hero-actions {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-menu-link {
+    letter-spacing: 0.16em;
     font-size: 10px;
   }
 }
@@ -450,16 +665,31 @@ body::before {
 
 .hero-bg-vignette {
   background:
-    radial-gradient(ellipse 90% 70% at 50% 38%, transparent 0%, rgba(4, 2, 3, 0.55) 68%),
-    linear-gradient(to bottom, rgba(4, 2, 3, 0.35) 0%, rgba(4, 2, 3, 0.82) 100%);
+    radial-gradient(ellipse 88% 58% at 50% 44%, transparent 0%, rgba(4, 2, 3, 0.28) 72%),
+    linear-gradient(to bottom, rgba(4, 2, 3, 0.12) 0%, rgba(4, 2, 3, 0.42) 55%, rgba(4, 2, 3, 0.62) 100%);
 }
 
 .hero-bg-glow {
   background: radial-gradient(
-    ellipse 80% 45% at 50% 22%,
-    rgba(201, 162, 39, 0.14),
-    transparent 70%
+    ellipse 70% 38% at 50% 48%,
+    rgba(201, 162, 39, 0.1),
+    transparent 68%
   );
+}
+
+.hero-throne-art.card-art-scene {
+  opacity: 1;
+  height: 100%;
+  min-height: 100%;
+}
+
+.hero-throne-art .card-art-photo {
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.hero-throne-art .card-art-placeholder {
+  opacity: 1;
 }
 
 .hero-fade-in {
@@ -500,5 +730,247 @@ body::before {
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+}
+
+/* Intro cinematic — studio → logo → hero crossfade */
+.intro-stage {
+  background: #060304;
+}
+
+.intro-cinematic {
+  contain: layout style paint;
+  will-change: opacity;
+}
+
+.intro-bg-base {
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 38%, rgba(48, 18, 28, 0.35), transparent 68%),
+    linear-gradient(180deg, #0c0508 0%, #060304 55%, #030203 100%);
+}
+
+.intro-bg-beam {
+  background: radial-gradient(
+    ellipse 42% 55% at 50% 42%,
+    rgba(201, 162, 39, 0.14),
+    rgba(201, 162, 39, 0.04) 42%,
+    transparent 68%
+  );
+}
+
+.intro-bg-throne-silhouette {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120'%3E%3Cpath fill='%23c9a227' fill-opacity='0.05' d='M40 95 L50 55 L70 70 L100 35 L130 70 L150 55 L160 95 Z'/%3E%3Crect x='85' y='95' width='30' height='18' fill='%23c9a227' fill-opacity='0.04'/%3E%3C/svg%3E")
+      center 68% / min(68vw, 300px) auto no-repeat;
+  opacity: 0.85;
+}
+
+.intro-bg-throne-photo {
+  z-index: 2;
+  opacity: 0;
+  background-color: #0a0908;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: intro-throne-photo-in 0.8s ease-out forwards;
+}
+
+.intro-cinematic[data-phase="exit"] {
+  animation: intro-cinematic-exit 0.8s ease-in forwards;
+  pointer-events: none;
+}
+
+.intro-cinematic[data-phase="exit"] .intro-logo-content {
+  animation: intro-logo-content-out 0.55s ease-in forwards;
+}
+
+.intro-studio-in .intro-studio-label,
+.intro-studio-in .intro-studio-name {
+  animation: intro-studio-fade-in 0.8s ease-out both;
+}
+
+.intro-studio-label {
+  text-shadow:
+    0 0 20px rgba(201, 162, 39, 0.55),
+    0 0 40px rgba(201, 162, 39, 0.2);
+}
+
+.intro-studio-name {
+  animation-delay: 0.08s;
+  text-shadow:
+    0 0 16px rgba(232, 200, 120, 0.45),
+    0 0 32px rgba(201, 162, 39, 0.18);
+}
+
+.intro-logo-title {
+  font-size: clamp(1.45rem, 6.2vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 32px rgba(0, 0, 0, 0.9);
+}
+
+.intro-logo-title-in {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: intro-logo-title-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.intro-logo-slogan {
+  font-size: clamp(0.62rem, 2.5vw, 0.85rem);
+  letter-spacing: 0.22em;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.85);
+}
+
+.intro-logo-slogan-in {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: intro-logo-slogan-in 0.5s ease-out 0.35s both;
+}
+
+.intro-logo-particles {
+  z-index: 1;
+  opacity: 0.55;
+}
+
+.intro-particle {
+  position: absolute;
+  bottom: -8%;
+  left: var(--p-left);
+  width: var(--p-size);
+  height: var(--p-size);
+  border-radius: 9999px;
+  background: rgba(201, 162, 39, 0.22);
+  box-shadow: 0 0 4px rgba(201, 162, 39, 0.12);
+  opacity: 0;
+  animation: intro-particle-float var(--p-dur) ease-in-out var(--p-delay) infinite;
+}
+
+@keyframes intro-throne-photo-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-cinematic-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes intro-logo-content-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes intro-studio-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-logo-title-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes intro-logo-slogan-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  15% {
+    opacity: 0.2;
+  }
+  85% {
+    opacity: 0.06;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-55vh) scale(1.1);
+  }
+}
+
+/* Hero — intro sonrası */
+.hero-enter-from-intro .hero-bg-image {
+  animation: hero-bg-fade-in 0.9s ease-out both;
+}
+
+.hero-menu-rise {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: hero-menu-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+@keyframes hero-content-crossfade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-bg-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-menu-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-reveal-in {
+  animation: hero-reveal-in 0.65s ease-out both;
+}
+
+@keyframes hero-reveal-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -4,7 +4,6 @@ import { SKILL_LABELS } from "@/types/game";
 import type { SkillFlashKind } from "@/lib/skillFlash";
 
 const VIEW_SIZE = 48;
-const ICON_BOX = 70;
 
 /** Optik merkez hizası — tüm semboller aynı kutuda */
 const OPTICAL_OFFSET: Record<SkillKey, string> = {
@@ -162,7 +161,7 @@ export function SkillOrb({ skill, fill, flash }: SkillOrbProps) {
 
   return (
     <div
-      className={`skill-symbol flex h-[90px] w-[90px] shrink-0 items-center justify-center ${
+      className={`skill-symbol flex shrink-0 items-center justify-center overflow-hidden ${
         dim ? "skill-symbol-dim" : ""
       } ${bright ? "skill-symbol-bright" : ""} ${
         criticalLow || criticalHigh ? "skill-symbol-critical" : ""
@@ -174,9 +173,7 @@ export function SkillOrb({ skill, fill, flash }: SkillOrbProps) {
     >
       <svg
         viewBox={`0 0 ${VIEW_SIZE} ${VIEW_SIZE}`}
-        width={ICON_BOX}
-        height={ICON_BOX}
-        className="block shrink-0 overflow-visible"
+        className="skill-symbol-svg block shrink-0 overflow-hidden"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
