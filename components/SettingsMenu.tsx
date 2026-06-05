@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   enableMusicFromUserGesture,
-  isMusicUnlockedByUser,
   playAudioUnlockChime,
   setAudioEnabled,
   setMusicEnabled,
@@ -16,7 +15,7 @@ import {
   setMusicEnabledSetting,
   setVibrationEnabledSetting,
 } from "@/lib/gameSettings";
-import { APP_VERSION_FULL } from "@/lib/version";
+import { ALPHA_LABEL } from "@/lib/version";
 
 type SettingsMenuProps = {
   open: boolean;
@@ -131,7 +130,7 @@ export function SettingsMenu({
   useEffect(() => {
     const s = getGameSettings();
     setAudioOn(s.audioEnabled);
-    setMusicOn(s.musicEnabled && isMusicUnlockedByUser());
+    setMusicOn(s.musicEnabled);
     setVibrationOn(s.vibrationEnabled);
     setHydrated(true);
   }, [open]);
@@ -237,8 +236,8 @@ export function SettingsMenu({
             </div>
 
             <div className="mt-4 space-y-1.5 border-t border-amber-900/25 pt-3">
-              <p className="text-center text-[10px] font-medium tracking-wide text-amber-500/55">
-                {APP_VERSION_FULL}
+              <p className="text-center text-[10px] font-medium tracking-[0.22em] text-amber-500/55">
+                {ALPHA_LABEL}
               </p>
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-amber-500/40">
                 Yakında

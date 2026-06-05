@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { HERO_THRONE_ROOM_URL } from "@/lib/heroAssets";
-import { APP_VERSION_FULL } from "@/lib/version";
 
 const IS_DEV = process.env.NODE_ENV === "development";
 
@@ -50,7 +49,7 @@ export function HeroScreen({
   }, []);
 
   return (
-    <section className="hero-screen hero-enter-from-intro flex h-full min-h-dvh w-full flex-1 flex-col">
+    <section className="hero-screen hero-enter-from-intro relative flex h-full min-h-dvh w-full flex-1 flex-col">
       <div
         className="hero-bg-image"
         style={{ backgroundImage: `url("${HERO_THRONE_ROOM_URL}")` }}
@@ -83,10 +82,6 @@ export function HeroScreen({
           )}
           <HeroMenuLink label="Ayarlar" onClick={onOpenSettings} />
         </nav>
-
-        <p className="hero-version-badge pointer-events-none mt-6 text-[9px] font-medium tracking-[0.14em] text-amber-500/45">
-          {APP_VERSION_FULL}
-        </p>
       </div>
     </section>
   );

@@ -11,11 +11,11 @@ export type ActInfo = {
 };
 
 export const ACTS: ActInfo[] = [
-  { act: 1, title: "Bölüm I", subtitle: "Sokaklar", levelMin: 0, levelMax: 19 },
-  { act: 2, title: "Bölüm II", subtitle: "Yeraltı ve Ticaret", levelMin: 20, levelMax: 39 },
-  { act: 3, title: "Bölüm III", subtitle: "Şehir Gücü", levelMin: 40, levelMax: 59 },
-  { act: 4, title: "Bölüm IV", subtitle: "Saray", levelMin: 60, levelMax: 79 },
-  { act: 5, title: "Bölüm V", subtitle: "Tahtın Gölgesi", levelMin: 80, levelMax: 99 },
+  { act: 1, title: "Küller", subtitle: "Küller", levelMin: 0, levelMax: 19 },
+  { act: 2, title: "Fısıltılar", subtitle: "Fısıltılar", levelMin: 20, levelMax: 39 },
+  { act: 3, title: "Gölgeler", subtitle: "Gölgeler", levelMin: 40, levelMax: 59 },
+  { act: 4, title: "Mühürler", subtitle: "Mühürler", levelMin: 60, levelMax: 79 },
+  { act: 5, title: "Taht", subtitle: "Taht", levelMin: 80, levelMax: 99 },
 ];
 
 export function getActForLevel(level: PlayerLevel): ActNumber {

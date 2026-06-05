@@ -26,6 +26,8 @@ import {
   playEndingSound,
   playResultSound,
   unlockAudio,
+  attemptAutoplayForPhase,
+  unlockMusicOnFirstInteraction,
   type GameMusicPhase,
 } from "@/lib/audio";
 import { getSkillFlashes, type SkillFlashes } from "@/lib/skillFlash";
@@ -59,6 +61,7 @@ import { ResultScreen } from "@/components/ResultScreen";
 import { SkillOrbs } from "@/components/SkillOrbs";
 import { HeroScreen } from "@/components/HeroScreen";
 import { IntroSplash } from "@/components/IntroSplash";
+import { AlphaBadge } from "@/components/AlphaBadge";
 import { StoryCard } from "@/components/StoryCard";
 import { markIntroSeenThisSession, shouldShowIntroCinematic } from "@/lib/introSession";
 
@@ -332,16 +335,44 @@ export function GameScreen() {
 
   const startMusicNow = useCallback(
     (opts?: { userGesture?: boolean }) => {
-      startMusicForCurrentPhase(toGameMusicPhase(phase), actInfo.act, opts);
+      startMusicForCurrentPhase(
+        toGameMusicPhase(phase),
+        playerLevel,
+        opts,
+        activeEnding?.type,
+      );
     },
-    [phase, actInfo.act],
+    [phase, playerLevel, activeEnding?.type],
   );
 
   useEffect(() => {
     if (phase === "hero" && showIntro) return;
     if (!isMusicEnabled() || !isMusicUnlockedByUser()) return;
-    startMusicForCurrentPhase(toGameMusicPhase(phase), actInfo.act);
-  }, [phase, actInfo.act, showIntro]);
+    startMusicForCurrentPhase(
+      toGameMusicPhase(phase),
+      playerLevel,
+      {},
+      activeEnding?.type,
+    );
+  }, [phase, playerLevel, showIntro, activeEnding?.type]);
+
+  useEffect(() => {
+    if (phase !== "hero" || showIntro || !hasMounted) return;
+    if (!isMusicEnabled() || isMusicUnlockedByUser()) return;
+    void attemptAutoplayForPhase("hero", playerLevel);
+  }, [phase, showIntro, hasMounted, playerLevel]);
+
+  useEffect(() => {
+    if (!hasMounted || showIntro) return;
+    return unlockMusicOnFirstInteraction(() => {
+      startMusicForCurrentPhase(
+        toGameMusicPhase(phase),
+        playerLevel,
+        { userGesture: true },
+        activeEnding?.type,
+      );
+    });
+  }, [hasMounted, showIntro, phase, playerLevel, activeEnding?.type]);
 
   const handleIntroComplete = useCallback(() => {
     markIntroSeenThisSession();
@@ -635,6 +666,13 @@ export function GameScreen() {
     setPhase("hero");
   }, [handleRestart, persistGame, phase]);
 
+  const showAlphaBadge =
+    phase === "hero" ||
+    phase === "origin_intro" ||
+    phase === "playing" ||
+    phase === "result" ||
+    phase === "ending";
+
   if (!hasMounted) {
     return <div className={BOOT_SHELL_CLASS} />;
   }
@@ -679,13 +717,9 @@ export function GameScreen() {
       >
       {phase === "playing" && (
         <p className="game-level-row mb-0.5 shrink-0 truncate text-center text-[10px] font-medium tracking-wide text-amber-200/68">
-          <span className="tabular-nums text-amber-100/88">
-            Seviye {playerLevel}
-          </span>
-          <span className="text-amber-600/45"> • </span>
-          <span>{rankTitle}</span>
-          <span className="text-amber-600/45"> • </span>
-          <span className="text-amber-200/55">{actInfo.title}</span>
+          <span className="tabular-nums text-amber-100/88">Yıl {playerLevel}</span>
+          <span className="text-amber-600/45"> · </span>
+          <span className="text-amber-200/55">{actInfo.subtitle}</span>
         </p>
       )}
 
@@ -757,6 +791,8 @@ export function GameScreen() {
         </div>
       )}
       </div>
+
+      {showAlphaBadge && <AlphaBadge />}
 
       {isDev && (
         <>

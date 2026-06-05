@@ -6,8 +6,8 @@ export type GameSettings = {
   musicVolume: number;
 };
 
-/** Master music gain default (Settings slider baseline) */
-export const MUSIC_MASTER_VOLUME = 0.75;
+/** Default user music preference (phase multipliers applied in audio.ts) */
+export const MUSIC_MASTER_VOLUME = 0.55;
 export const DEFAULT_MUSIC_VOLUME = MUSIC_MASTER_VOLUME;
 
 const KEYS = {
@@ -21,7 +21,7 @@ const LEGACY_AUDIO_KEY = "wot-audio-enabled";
 
 const DEFAULTS: GameSettings = {
   audioEnabled: false,
-  musicEnabled: false,
+  musicEnabled: true,
   vibrationEnabled: true,
   musicVolume: DEFAULT_MUSIC_VOLUME,
 };

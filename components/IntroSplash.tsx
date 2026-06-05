@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { HERO_THRONE_ROOM_URL } from "@/lib/heroAssets";
-import { playIntroTheme, stopIntroTheme } from "@/lib/audio";
 
 const STUDIO_MS = 1500;
 const LOGO_MS = 2000;
@@ -64,7 +63,6 @@ export function IntroSplash({ onComplete }: IntroSplashProps) {
     completedRef.current = true;
     clearTimers();
     setPhase("exit");
-    stopIntroTheme();
     schedule(() => {
       if (IS_DEV) console.log("[intro] Intro complete");
       onComplete();
@@ -73,7 +71,6 @@ export function IntroSplash({ onComplete }: IntroSplashProps) {
 
   useEffect(() => {
     if (IS_DEV) console.log("[intro] Intro mounted");
-    playIntroTheme();
 
     const img = new Image();
     img.src = HERO_THRONE_ROOM_URL;
@@ -83,7 +80,6 @@ export function IntroSplash({ onComplete }: IntroSplashProps) {
 
     return () => {
       clearTimers();
-      stopIntroTheme();
     };
   }, [clearTimers, finish, schedule]);
 

@@ -1,53 +1,41 @@
-import type { ActNumber } from "@/lib/acts";
 import {
   getGameSettings,
   getMusicVolumeSetting,
   setAudioEnabledSetting,
   setMusicEnabledSetting,
 } from "@/lib/gameSettings";
+import {
+  getMusicTrackForLevel,
+  type GameMusicPhase,
+} from "@/lib/musicTracks";
 
 /** Web Audio drone kapalı — müzik dosya tabanlı HTMLAudioElement ile çalar. */
 export const PROCEDURAL_AMBIENT_ENABLED = false;
 
 const SFX_BUS_GAIN = 0.05;
-const MUSIC_FADE_MS = 1400;
+const MUSIC_CROSSFADE_MS = 1750;
+const PLAYBACK_ENTRY_FADE_MS = 3000;
 const TEST_TONE_RETRY_MS = 360;
 const IS_DEV = process.env.NODE_ENV === "development";
 
-function getMusicTargetVolume(): number {
-  return getMusicVolumeSetting();
+/** Absolute gain targets (before user preference scaling). */
+const PHASE_GAIN: Record<GameMusicPhase, number> = {
+  hero: 0.5,
+  origin_intro: 0.48,
+  playing: 0.45,
+  result: 0.45,
+  ending: 0.55,
+};
+
+const DEFAULT_USER_MUSIC = 0.55;
+
+let currentMusicPhase: GameMusicPhase = "hero";
+
+function getMusicTargetVolume(phase: GameMusicPhase = currentMusicPhase): number {
+  const user = getMusicVolumeSetting();
+  const scale = user / DEFAULT_USER_MUSIC;
+  return Math.min(0.6, PHASE_GAIN[phase] * scale);
 }
-
-const ACT_TRACK_BASES: Record<ActNumber, string> = {
-  1: "act-1-ashes",
-  2: "act-2-whispers",
-  3: "act-3-shadows",
-  4: "act-4-seals",
-  5: "act-5-throne",
-};
-
-const MENU_TRACK_BASE = "menu-theme";
-const INTRO_TRACK_BASE = "intro-theme";
-
-/** @deprecated Use ACT_TRACK_BASES — web prefers compressed formats */
-const ACT_TRACKS: Record<ActNumber, string> = {
-  1: `/audio/${ACT_TRACK_BASES[1]}.wav`,
-  2: `/audio/${ACT_TRACK_BASES[2]}.wav`,
-  3: `/audio/${ACT_TRACK_BASES[3]}.wav`,
-  4: `/audio/${ACT_TRACK_BASES[4]}.wav`,
-  5: `/audio/${ACT_TRACK_BASES[5]}.wav`,
-};
-
-const MENU_TRACK = `/audio/${MENU_TRACK_BASE}.wav`;
-
-export type MusicContext = { type: "menu" } | { type: "act"; act: ActNumber };
-
-export type GameMusicPhase =
-  | "hero"
-  | "origin_intro"
-  | "playing"
-  | "result"
-  | "ending";
 
 type PlayMusicOptions = {
   /** İlk başlatma kullanıcı tıklamasından — autoplay unlock */
@@ -61,11 +49,19 @@ let currentTrackPath: string | null = null;
 let requestedSrc: string | null = null;
 let lastPlayError: string | null = null;
 let fadeIntervalId: ReturnType<typeof setInterval> | null = null;
-let currentAct: ActNumber | null = null;
 let musicUnlockedByUser = false;
 let resumeListenerAttached = false;
 let pendingStartAfterUnlock: (() => void) | null = null;
-let introEl: HTMLAudioElement | null = null;
+const unlockListeners = new Set<() => void>();
+
+function notifyMusicUnlockListeners(): void {
+  for (const fn of unlockListeners) fn();
+}
+
+export function subscribeMusicUnlock(listener: () => void): () => void {
+  unlockListeners.add(listener);
+  return () => unlockListeners.delete(listener);
+}
 
 function canUseAudio(): boolean {
   return typeof window !== "undefined";
@@ -159,10 +155,11 @@ function fadeVolume(
   from: number,
   to: number,
   onDone?: () => void,
+  durationMs = MUSIC_CROSSFADE_MS,
 ): void {
   clearFadeInterval();
-  const steps = 24;
-  const stepMs = MUSIC_FADE_MS / steps;
+  const steps = 28;
+  const stepMs = durationMs / steps;
   let step = 0;
   fadeIntervalId = setInterval(() => {
     step += 1;
@@ -178,27 +175,10 @@ function fadeVolume(
 
 function trackCandidates(base: string): string[] {
   return [
-    `/audio/${base}.mp3`,
     `/audio/${base}.ogg`,
+    `/audio/${base}.mp3`,
     `/audio/${base}.wav`,
   ];
-}
-
-function trackBaseForContext(context: MusicContext): string {
-  return context.type === "menu" ? MENU_TRACK_BASE : ACT_TRACK_BASES[context.act];
-}
-
-export function resolveMusicContext(
-  phase: GameMusicPhase,
-  act: ActNumber,
-): MusicContext {
-  if (phase === "hero" || phase === "origin_intro") {
-    return { type: "menu" };
-  }
-  if (phase === "ending") {
-    return { type: "act", act: 5 };
-  }
-  return { type: "act", act };
 }
 
 function srcMatchesLoaded(el: HTMLAudioElement, src: string): boolean {
@@ -215,9 +195,13 @@ function isMusicAudible(el: HTMLAudioElement): boolean {
   return !el.paused && el.volume > 0.01 && !el.muted;
 }
 
-function applyMusicVolume(el: HTMLAudioElement, opts: PlayMusicOptions): void {
+function applyMusicVolume(
+  el: HTMLAudioElement,
+  opts: PlayMusicOptions,
+  phase: GameMusicPhase = currentMusicPhase,
+): void {
   el.muted = false;
-  const target = getMusicTargetVolume();
+  const target = getMusicTargetVolume(phase);
   if (opts.userGesture || el.volume < 0.01) {
     el.volume = target;
   }
@@ -254,8 +238,9 @@ async function waitForCanPlay(el: HTMLAudioElement, src: string): Promise<void> 
 async function ensureMusicPlaying(
   el: HTMLAudioElement,
   opts: PlayMusicOptions,
+  phase: GameMusicPhase = currentMusicPhase,
 ): Promise<boolean> {
-  applyMusicVolume(el, opts);
+  applyMusicVolume(el, opts, phase);
 
   if (!el.paused) {
     lastPlayError = null;
@@ -264,7 +249,7 @@ async function ensureMusicPlaying(
 
   try {
     await el.play();
-    applyMusicVolume(el, opts);
+    applyMusicVolume(el, opts, phase);
     lastPlayError = null;
     return true;
   } catch (err) {
@@ -277,12 +262,13 @@ async function tryPlaySrc(
   el: HTMLAudioElement,
   src: string,
   opts: PlayMusicOptions,
+  phase: GameMusicPhase = currentMusicPhase,
 ): Promise<boolean> {
   requestedSrc = src;
-  applyMusicVolume(el, opts);
+  applyMusicVolume(el, opts, phase);
 
   if (srcMatchesLoaded(el, src)) {
-    const ok = await ensureMusicPlaying(el, opts);
+    const ok = await ensureMusicPlaying(el, opts, phase);
     if (ok) {
       currentTrackPath = src;
       return true;
@@ -299,7 +285,7 @@ async function tryPlaySrc(
     return false;
   }
 
-  const ok = await ensureMusicPlaying(el, opts);
+  const ok = await ensureMusicPlaying(el, opts, phase);
   if (ok) {
     currentTrackPath = src;
     return true;
@@ -311,6 +297,7 @@ async function playMusicByBase(
   base: string,
   force: boolean,
   opts: PlayMusicOptions = {},
+  phase: GameMusicPhase = currentMusicPhase,
 ): Promise<void> {
   if (!canUseAudio() || !isMusicEnabled()) return;
 
@@ -321,7 +308,7 @@ async function playMusicByBase(
     if (isMusicAudible(el)) return;
 
     if (el.paused && el.src && currentTrackPath) {
-      const resumed = await ensureMusicPlaying(el, opts);
+      const resumed = await ensureMusicPlaying(el, opts, phase);
       if (resumed) return;
     }
   }
@@ -334,12 +321,17 @@ async function playMusicByBase(
     }
 
     const src = candidates[index]!;
+    const prevBase = currentTrackBase;
     currentTrackBase = base;
 
-    const ok = await tryPlaySrc(el, src, opts);
+    const ok = await tryPlaySrc(el, src, opts, phase);
     if (ok) {
-      if (!opts.userGesture && el.volume < getMusicTargetVolume() * 0.5) {
-        fadeVolume(el, el.volume, getMusicTargetVolume());
+      const target = getMusicTargetVolume(phase);
+      if (force || prevBase !== base) {
+        el.volume = 0;
+        fadeVolume(el, 0, target, undefined, PLAYBACK_ENTRY_FADE_MS);
+      } else if (el.volume < target * 0.5) {
+        fadeVolume(el, el.volume, target);
       }
       return;
     }
@@ -370,133 +362,40 @@ export function isMusicUnlockedByUser(): boolean {
   return musicUnlockedByUser;
 }
 
-function getIntroElement(): HTMLAudioElement {
-  if (!introEl) {
-    introEl = new Audio();
-    introEl.loop = false;
-    introEl.preload = "auto";
-    introEl.volume = getMusicTargetVolume();
-    introEl.muted = false;
-  }
-  return introEl;
+export function needsMusicUnlockPrompt(): boolean {
+  return false;
 }
 
-/** Intro splash — yalnızca müzik açık + unlock varsa çalar */
-export function playIntroTheme(): void {
-  if (IS_DEV) {
-    console.log("[audio] playIntroTheme called", {
-      musicEnabled: isMusicEnabled(),
-      unlocked: musicUnlockedByUser,
-    });
-  }
-  if (!canUseAudio()) return;
-  if (!isMusicEnabled() || !musicUnlockedByUser) return;
-
-  void (async () => {
-    await unlockAudio();
-    const el = getIntroElement();
-    el.muted = false;
-    el.volume = getMusicTargetVolume();
-    el.loop = false;
-
-    const candidates = trackCandidates(INTRO_TRACK_BASE);
-    for (const src of candidates) {
-      requestedSrc = src;
-      el.src = src;
-      el.load();
-      try {
-        await waitForCanPlay(el, src);
-        await el.play();
-        lastPlayError = null;
-        return;
-      } catch (err) {
-        logPlayError(err, src);
-      }
-    }
-  })();
-}
-
-export function stopIntroTheme(): void {
-  if (!introEl) return;
-  introEl.pause();
-  introEl.currentTime = 0;
-}
-
-/** Intro bitti — intro-theme → menu-theme crossfade */
-export function crossfadeIntroToMenuMusic(): void {
-  if (!canUseAudio()) {
-    stopIntroTheme();
-    return;
+/** İlk kullanıcı etkileşiminde müziği sessizce unlock et (buton yok). */
+export function unlockMusicOnFirstInteraction(startMusic: () => void): () => void {
+  if (!canUseAudio() || !isMusicEnabled() || musicUnlockedByUser) {
+    return () => {};
   }
 
-  if (!isMusicEnabled() || !musicUnlockedByUser) {
-    stopIntroTheme();
-    return;
-  }
+  const handler = () => {
+    if (!isMusicEnabled() || musicUnlockedByUser) return;
+    enableMusicFromUserGesture(startMusic);
+    window.removeEventListener("pointerdown", handler, true);
+    window.removeEventListener("keydown", handler, true);
+  };
 
-  void (async () => {
-    await unlockAudio();
-    const intro = introEl;
-    const menu = getMusicElement();
-    const target = getMusicTargetVolume();
-    const candidates = trackCandidates(MENU_TRACK_BASE);
+  window.addEventListener("pointerdown", handler, { capture: true, passive: true });
+  window.addEventListener("keydown", handler, { capture: true, passive: true });
 
-    menu.loop = true;
-    menu.muted = false;
-    menu.volume = 0;
-
-    let menuStarted = false;
-    for (const src of candidates) {
-      requestedSrc = src;
-      menu.src = src;
-      menu.load();
-      try {
-        await waitForCanPlay(menu, src);
-        await menu.play();
-        currentTrackBase = MENU_TRACK_BASE;
-        currentTrackPath = src;
-        menuStarted = true;
-        lastPlayError = null;
-        break;
-      } catch (err) {
-        logPlayError(err, src);
-      }
-    }
-
-    if (!menuStarted) {
-      stopIntroTheme();
-      return;
-    }
-
-    const steps = 22;
-    const stepMs = 55;
-    let step = 0;
-    const introStartVol = intro?.volume ?? target;
-
-    const crossfadeId = window.setInterval(() => {
-      step += 1;
-      const t = step / steps;
-      if (intro && !intro.paused) {
-        intro.volume = Math.max(0, introStartVol * (1 - t));
-      }
-      menu.volume = target * t;
-      if (step >= steps) {
-        window.clearInterval(crossfadeId);
-        stopIntroTheme();
-        menu.volume = target;
-      }
-    }, stepMs);
-  })();
+  return () => {
+    window.removeEventListener("pointerdown", handler, true);
+    window.removeEventListener("keydown", handler, true);
+  };
 }
 
 /**
- * Ayarlar > Müzik Aç — click handler içinden çağır.
- * `startMusic` aynı handler'da hemen ve test tonu sonrası tekrar çağrılmalı.
+ * Ayarlar > Müzik Aç veya hero "Müziği Başlat" — click handler içinden çağır.
  */
 export function enableMusicFromUserGesture(startMusic?: () => void): void {
   if (!canUseAudio()) return;
   musicUnlockedByUser = true;
   setMusicEnabledSetting(true);
+  notifyMusicUnlockListeners();
   attachResumeOnInteraction();
   void unlockAudio();
   playMusicTestTone();
@@ -525,7 +424,41 @@ export async function resumePausedMusicIfNeeded(
   await ensureMusicPlaying(el, opts);
 }
 
-/** Müzik açılış test tonu — Web Audio (SFX ayarından bağımsız) */
+/** Sessiz autoplay dene — başarılı olursa unlock sayılır. */
+export async function attemptAutoplayForPhase(
+  phase: GameMusicPhase,
+  playerLevel: number,
+): Promise<boolean> {
+  if (!canUseAudio() || !isMusicEnabled() || musicUnlockedByUser) {
+    return musicUnlockedByUser;
+  }
+
+  await unlockAudio();
+  const base = getMusicTrackForLevel(playerLevel, phase);
+  const el = getMusicElement();
+  const candidates = trackCandidates(base);
+
+  for (const src of candidates) {
+    el.src = src;
+    el.load();
+    try {
+      await waitForCanPlay(el, src);
+      applyMusicVolume(el, { userGesture: false });
+      await el.play();
+      musicUnlockedByUser = true;
+      currentTrackBase = base;
+      currentTrackPath = src;
+      lastPlayError = null;
+      notifyMusicUnlockListeners();
+      return true;
+    } catch (err) {
+      logPlayError(err, src);
+    }
+  }
+
+  return false;
+}
+
 export function playMusicTestTone(): void {
   void (async () => {
     const ctx = await ensureAudioContext();
@@ -571,7 +504,6 @@ export function setMusicEnabled(enabled: boolean): void {
   if (!canUseAudio()) return;
   setMusicEnabledSetting(enabled);
   if (!enabled) {
-    musicUnlockedByUser = false;
     stopAmbientMusic();
   }
 }
@@ -631,69 +563,35 @@ export function stopAmbientMusic(): void {
   }
   currentTrackPath = null;
   currentTrackBase = null;
-  currentAct = null;
   requestedSrc = null;
 }
 
-export async function startMenuMusic(
+export async function startMusicForPhase(
+  phase: GameMusicPhase,
+  playerLevel: number,
   force = false,
   opts: PlayMusicOptions = {},
-): Promise<void> {
-  if (!canUseAudio() || !isMusicEnabled()) return;
-  if (!musicUnlockedByUser && !opts.userGesture) return;
-  await unlockAudio();
-  currentAct = null;
-  await playMusicByBase(MENU_TRACK_BASE, force, opts);
-}
-
-export async function startAmbientMusic(
-  act: ActNumber,
-  force = false,
-  opts: PlayMusicOptions = {},
+  endingType?: import("@/lib/musicTracks").EndingType,
 ): Promise<void> {
   if (!canUseAudio() || !isMusicEnabled()) return;
   if (!musicUnlockedByUser && !opts.userGesture) return;
 
   await unlockAudio();
-
-  if (!PROCEDURAL_AMBIENT_ENABLED) {
-    currentAct = act;
-    await playMusicByBase(ACT_TRACK_BASES[act], force, opts);
-  }
+  currentMusicPhase = phase;
+  const base = getMusicTrackForLevel(playerLevel, phase, endingType);
+  await playMusicByBase(base, force, opts, phase);
 }
 
-export async function startGameMusic(
-  context: MusicContext,
-  force = false,
-  opts: PlayMusicOptions = {},
-): Promise<void> {
-  if (context.type === "menu") {
-    await startMenuMusic(force, opts);
-    return;
-  }
-  await startAmbientMusic(context.act, force, opts);
-}
-
-/** Phase + act → doğru parça; gereksiz restart yapmaz (crossfade yalnızca track değişince). */
+/** Phase + level → doğru parça; crossfade yalnızca track değişince. */
 export function startMusicForCurrentPhase(
   phase: GameMusicPhase,
-  act: ActNumber,
+  playerLevel: number,
   opts: PlayMusicOptions = {},
+  endingType?: import("@/lib/musicTracks").EndingType,
 ): void {
   if (!canUseAudio() || !isMusicEnabled()) return;
   if (!musicUnlockedByUser && !opts.userGesture) return;
-  const context = resolveMusicContext(phase, act);
-  void startGameMusic(context, false, opts);
-}
-
-/** @deprecated */
-export function playActMusic(act: ActNumber): void {
-  void startAmbientMusic(act);
-}
-
-/** @deprecated */
-export function stopActMusic(): void {
-  stopAmbientMusic();
+  void startMusicForPhase(phase, playerLevel, false, opts, endingType);
 }
 
 async function playOneShot(
@@ -782,7 +680,7 @@ export function playEndingSound(): void {
 
 export function applyMusicMasterVolume(): void {
   if (!musicEl || musicEl.paused) return;
-  musicEl.volume = getMusicTargetVolume();
+  musicEl.volume = getMusicTargetVolume(currentMusicPhase);
 }
 
 const READY_STATE_LABELS = [
@@ -832,18 +730,14 @@ export function getMusicDebugState(): MusicDebugState {
     lastPlayError,
     musicEnabled: isMusicEnabled(),
     sfxEnabled: isAudioEnabled(),
-    masterVolume: getMusicTargetVolume(),
+    masterVolume: getMusicTargetVolume(currentMusicPhase),
     playing: Boolean(el && isMusicAudible(el)),
     unlockedByUser: musicUnlockedByUser,
   };
 }
 
+export type { GameMusicPhase };
 export {
-  ACT_TRACK_BASES,
-  ACT_TRACKS,
-  INTRO_TRACK_BASE,
-  MENU_TRACK,
-  MENU_TRACK_BASE,
-  trackBaseForContext,
+  getMusicTrackForLevel,
   trackCandidates,
 };
