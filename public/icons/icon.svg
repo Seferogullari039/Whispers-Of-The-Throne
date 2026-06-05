@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Whispers of the Throne">
+  <rect width="512" height="512" fill="#0f0a14"/>
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#c9a227" stroke-width="12" opacity="0.35"/>
+  <path fill="#c9a227" d="M256 96 L296 176 L384 184 L316 244 L336 332 L256 288 L176 332 L196 244 L128 184 L216 176 Z"/>
+  <rect x="196" y="340" width="120" height="24" rx="8" fill="#8b5a2b"/>
+  <rect x="176" y="372" width="160" height="56" rx="12" fill="#1a0f0a" stroke="#c9a227" stroke-width="6"/>
+</svg>

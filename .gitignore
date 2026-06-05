@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# capacitor native projects (add when platforms are created)
+/android/
+/ios/
+
 # production
 /build
 

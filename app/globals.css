@@ -1,26 +1,504 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f0a14;
+  --foreground: #f5e6d3;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-heading: var(--font-cinzel), Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
+  background: #08060a;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+.font-body {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+}
+
+.font-heading {
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
+}
+
+.game-shell h1,
+.game-shell h2,
+.game-shell h3 {
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.game-shell {
+  position: relative;
+  z-index: 1;
+  touch-action: manipulation;
+  transition: background 1.4s ease;
+}
+
+.game-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+.game-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.game-shell.game-act-1 {
+  background:
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(90, 82, 72, 0.45), transparent 58%),
+    radial-gradient(ellipse 90% 55% at 10% 100%, rgba(35, 32, 28, 0.5), transparent),
+    radial-gradient(ellipse 70% 50% at 95% 60%, rgba(50, 45, 40, 0.25), transparent),
+    #0a0908;
+}
+
+.game-shell.game-act-2 {
+  background:
+    radial-gradient(ellipse 110% 65% at 40% -10%, rgba(35, 70, 95, 0.4), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 85% 90%, rgba(15, 35, 50, 0.45), transparent),
+    radial-gradient(ellipse 60% 40% at 5% 50%, rgba(25, 50, 65, 0.2), transparent),
+    #060a0e;
+}
+
+.game-shell.game-act-3 {
+  background:
+    radial-gradient(ellipse 115% 70% at 50% -12%, rgba(170, 125, 45, 0.38), transparent 58%),
+    radial-gradient(ellipse 75% 55% at 15% 100%, rgba(90, 60, 15, 0.3), transparent),
+    radial-gradient(ellipse 65% 45% at 90% 40%, rgba(120, 90, 30, 0.18), transparent),
+    #0e0a06;
+}
+
+.game-shell.game-act-4 {
+  background:
+    radial-gradient(ellipse 110% 68% at 50% -8%, rgba(95, 55, 130, 0.42), transparent 56%),
+    radial-gradient(ellipse 85% 55% at 8% 95%, rgba(45, 18, 65, 0.35), transparent),
+    radial-gradient(ellipse 55% 45% at 92% 35%, rgba(70, 35, 100, 0.22), transparent),
+    #090712;
+}
+
+.game-shell.game-act-5 {
+  background:
+    radial-gradient(ellipse 120% 65% at 50% 0%, rgba(130, 28, 28, 0.42), transparent 52%),
+    radial-gradient(ellipse 90% 60% at 75% 100%, rgba(25, 5, 5, 0.55), transparent),
+    radial-gradient(ellipse 50% 40% at 10% 45%, rgba(80, 15, 15, 0.2), transparent),
+    #040203;
+}
+
+.game-play-main {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.settings-menu-btn {
+  width: 36px;
+  height: 36px;
+}
+
+.origin-begin-link {
+  letter-spacing: 0.28em;
+}
+
+.story-card-drag {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Skill sembolleri — tek amber palet, SVG mask doluluk */
+.skill-symbol-fill-level {
+  transition:
+    y 0.35s ease,
+    height 0.35s ease;
+}
+
+.skill-symbol-dim .skill-symbol-lit {
+  filter: brightness(0.5) saturate(0.65);
+}
+
+.skill-symbol-bright .skill-symbol-lit {
+  filter: brightness(1.25) saturate(1.05)
+    drop-shadow(0 0 10px rgba(232, 200, 120, 0.35));
+}
+
+.skill-symbol-critical {
+  animation: skill-symbol-pulse 2.2s ease-in-out infinite;
+}
+
+.skill-symbol-flash-rise {
+  animation: skill-symbol-rise 0.75s ease-out;
+}
+
+.skill-symbol-flash-fall {
+  animation: skill-symbol-fall 0.65s ease-out;
+}
+
+.story-choice-overlay {
+  opacity: 0.55;
+}
+
+.story-choice-ready {
+  opacity: 1;
+}
+
+.story-choice-ready p {
+  color: rgb(255 248 235);
+  text-shadow: 0 0 18px rgba(232, 200, 120, 0.55);
+}
+
+@keyframes skill-symbol-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.88;
+  }
+}
+
+@keyframes skill-symbol-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  40% {
+    transform: translateY(-6px) scale(1.08);
+    filter: brightness(1.45);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes skill-symbol-fall {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+    filter: brightness(0.5);
+  }
+}
+
+/* Kart sahnesi */
+.card-art-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+.card-art-photo {
+  will-change: opacity;
+}
+
+.card-art-placeholder {
+  will-change: opacity;
+}
+
+.card-art-fog {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(20, 18, 24, 0.15) 40%,
+    rgba(10, 8, 14, 0.45) 100%
+  );
+}
+
+.card-art-gleam {
+  background: radial-gradient(
+    ellipse 80% 40% at 50% 0%,
+    rgba(255, 220, 160, 0.12),
+    transparent 70%
+  );
+}
+
+.card-scene-sky {
+  background: linear-gradient(
+    180deg,
+    rgba(60, 50, 70, 0.15) 0%,
+    transparent 45%
+  );
+}
+
+.card-scene-mist {
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(8, 6, 12, 0.35) 70%,
+    rgba(4, 3, 8, 0.65) 100%
+  );
+}
+
+.card-scene-svg {
+  opacity: 0.85;
+}
+
+.card-scene-act-1 .card-scene-sky {
+  background: linear-gradient(180deg, rgba(50, 45, 40, 0.2), transparent);
+}
+
+.card-scene-act-2 .card-scene-sky,
+.card-scene-dock-worker .card-scene-sky {
+  background: linear-gradient(180deg, rgba(30, 60, 80, 0.25), transparent);
+}
+
+.card-scene-act-3 .card-scene-sky {
+  background: linear-gradient(180deg, rgba(120, 90, 40, 0.2), transparent);
+}
+
+.card-scene-act-4 .card-scene-sky {
+  background: linear-gradient(180deg, rgba(70, 40, 100, 0.22), transparent);
+}
+
+.card-scene-act-5 .card-scene-sky {
+  background: linear-gradient(180deg, rgba(100, 25, 25, 0.25), transparent);
+}
+
+/* Swipe */
+.swipe-trail-right {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 160, 50, 0.35),
+    rgba(255, 200, 100, 0.15)
+  );
+}
+
+.swipe-trail-left {
+  background: linear-gradient(
+    270deg,
+    transparent,
+    rgba(100, 40, 90, 0.35),
+    rgba(140, 60, 120, 0.12)
+  );
+}
+
+.choice-seal-ready {
+  animation: seal-pulse 0.5s ease-out;
+  box-shadow: 0 0 28px rgba(255, 200, 120, 0.35);
+}
+
+.choice-seal-right.choice-seal-ready {
+  box-shadow: 0 0 28px rgba(255, 200, 120, 0.4);
+}
+
+.choice-seal-left.choice-seal-ready {
+  box-shadow: 0 0 28px rgba(140, 80, 160, 0.35);
+}
+
+@keyframes seal-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.settings-overlay {
+  background: rgba(4, 2, 3, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: settings-fade-in 0.22s ease-out;
+}
+
+.settings-modal {
+  animation: settings-modal-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.settings-toggle-pill:focus-visible {
+  outline: 2px solid rgba(217, 160, 50, 0.5);
+  outline-offset: 2px;
+}
+
+@keyframes settings-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hero giriş ekranı */
+.hero-title-block {
+  text-wrap: balance;
+}
+
+.hero-title {
+  font-size: clamp(3.25rem, 11vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.12em;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.92);
+}
+
+.hero-slogan {
+  font-size: clamp(0.82rem, 3.6vw, 1.05rem);
+  letter-spacing: 0.38em;
+  white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+}
+
+.hero-menu-link {
+  letter-spacing: 0.38em;
+  text-shadow: 0 0 0 transparent;
+}
+
+.hero-menu-link:hover,
+.hero-menu-link:focus-visible {
+  color: rgb(255 248 235);
+  text-shadow:
+    0 0 18px rgba(232, 200, 120, 0.72),
+    0 0 36px rgba(201, 162, 39, 0.35);
+}
+
+.hero-menu-link:active {
+  color: rgb(255 248 235);
+  text-shadow:
+    0 0 14px rgba(232, 200, 120, 0.65),
+    0 0 28px rgba(201, 162, 39, 0.3);
+}
+
+@media (max-width: 430px) {
+  .hero-title {
+    font-size: clamp(2.85rem, 10.5vw, 4.75rem);
+    letter-spacing: 0.07em;
+  }
+
+  .hero-slogan {
+    letter-spacing: 0.22em;
+    font-size: clamp(0.72rem, 3.1vw, 0.9rem);
+  }
+
+  .hero-menu-link {
+    letter-spacing: 0.22em;
+    font-size: 10px;
+  }
+}
+
+.swipe-tutorial-hint {
+  animation: swipe-tutorial-in 0.45s ease-out both;
+}
+
+@keyframes swipe-tutorial-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-menu-btn:focus-visible {
+  outline: 2px solid rgba(217, 160, 50, 0.35);
+  outline-offset: 2px;
+}
+
+.hero-bg-vignette {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 38%, transparent 0%, rgba(4, 2, 3, 0.55) 68%),
+    linear-gradient(to bottom, rgba(4, 2, 3, 0.35) 0%, rgba(4, 2, 3, 0.82) 100%);
+}
+
+.hero-bg-glow {
+  background: radial-gradient(
+    ellipse 80% 45% at 50% 22%,
+    rgba(201, 162, 39, 0.14),
+    transparent 70%
+  );
+}
+
+.hero-fade-in {
+  animation: hero-fade-in 1.4s ease-out both;
+}
+
+.hero-actions {
+  animation: hero-actions-in 1.6s ease-out 0.35s both;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-actions-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes settings-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }

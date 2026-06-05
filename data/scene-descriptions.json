@@ -1,0 +1,128 @@
+{
+  "cards": {
+    "orphan-crumbs": "Orphan child hiding among funeral mourners outside palace gates at night",
+    "orphan-gate": "Empty vizier throne draped in black beneath palace columns at dusk",
+    "thief-mark": "Thief guild master offering a stolen bronze vizier seal in a candlelit back room",
+    "thief-patron": "Masked patron whispering conspiracy over gold coins in a shadowed tavern booth",
+    "dock-signal": "Burning ships on the horizon as the harbor master rallies workers at dawn",
+    "dock-manifest": "Heavy incense-marked crate on the dock beside imperial customs guards",
+    "temple-vigil": "Temple acolytes chanting at the vizier funeral vigil with incense smoke",
+    "temple-seal": "Ancient wax seal hidden beneath a temple altar stone",
+    "arena-roar": "Arena crowd roaring as a fighter enters the blood-stained sand pit",
+    "arena-patron": "Arena patron offering gold to a rising champion in torchlit tunnels",
+    "vizier-procession": "Vizier funeral procession winding through narrow capital streets",
+    "spymaster-audience": "Spymaster revealing a forged secret ledger in dungeon torchlight",
+    "hungry-winter": "Starving crowd outside sealed grain silos while palace feast lights glow",
+    "exiled-heir": "Secret messenger meeting under a bridge about an exiled prince's armies",
+    "bishop-blessing": "Patriarch demanding tithe in a dark basilica before a kneeling courtier",
+    "assassin-in-hall": "Guards dragging a kitchen boy with a vizier dagger through a marble hall",
+    "trade-fleet": "Silk merchant fleet anchored with disputed imperial customs documents",
+    "queen-mother": "Queen mother on a mirrored throne judging a young court aspirant",
+    "tax-revolt": "Angry merchants confronting scribes at the tax office square",
+    "servants-tale": "Palace servants whispering gossip near the war minister's door",
+    "grain-auction": "Grain auction scales between a hungry crowd and a fixing patron",
+    "court-poet": "Court poet reciting satire before laughing and offended nobles",
+    "bridge-orphans": "Orphan children blocking an imperial bridge demanding scattered coins",
+    "forged-decree": "Nervous scribe presenting a forged imperial decree with wax seal",
+    "wine-cellar": "Drunk duke confessing bribery in a palace wine cellar by torchlight",
+    "market-fire": "Market district fire forcing a choice between ledgers and families upstairs",
+    "eunuch-envoy": "Palace eunuch interrogating an official in a gilded antechamber",
+    "salt-riot": "Dock workers throwing salt at tax soldiers near the city gate",
+    "library-flame": "Eastern library fire threatening census scrolls and a scholar's hands",
+    "midnight-coup": "Captain reporting midnight troop movement in palace corridors",
+    "the-wounded-boy": "Wounded boy clutching a broken guard badge in an ash-covered alley",
+    "captain-remembers": "Harbor captain offering spears in a tavern for a saved child's debt",
+    "cold-recognition": "Harbor captain confronting a player who abandoned a wounded child",
+    "veiled-informant": "Veiled informant sliding a coded note through a crowded market",
+    "whispered-ledger": "Whispered secret ledger passed between shadowed merchants",
+    "closed-door": "Closed council door with arguing silhouettes behind frosted glass",
+    "guild-charter": "Merchant guild signing a charter over sea maps and gold scales",
+    "guild-hidden-docks": "Hidden smuggler dock unloading crates at midnight in fog",
+    "guild-imperial-audit": "Imperial inspectors searching warehouse ledgers and cargo",
+    "noble-feast": "Veldran noble feast with overflowing wine and guarded laughter",
+    "noble-blood-oath": "Nobles cutting palms for a blood oath over a candlelit table",
+    "noble-scandal": "Noble scandal whispers spreading through a banquet hall of mirrors",
+    "temple-reliquary": "First emperor reliquary glowing in a silent temple crypt",
+    "temple-heresy": "Heresy trial with a chained acolyte before temple judges",
+    "temple-pilgrimage": "Pilgrim caravan crossing desert toward a distant sacred peak",
+    "arena-challenge": "Foreign arena champion insulting the imperial banner before a roaring crowd",
+    "arena-bloody-title": "Fighter raising a bloody arena title belt amid cheering tiers",
+    "arena-fixed-reckoning": "Fixed arena duel with a bribed referee and tense gamblers",
+    "wounded-boy-legacy": "Saved wounded boy testifying before a nervous magistrate",
+    "informant-last-whisper": "Dying informant delivering a final whisper in a rainy alley",
+    "the-great-plague": "Plague carts and masked citizens in an abandoned capital street",
+    "royal-inspection": "Imperial inspectors auditing merchant records in a torchlit warehouse",
+    "border-war": "Border fortress silhouettes against distant war campfires",
+    "assassin-offer": "Hooded assassin offering a sealed murder contract by candlelight",
+    "forbidden-archive": "Forbidden imperial archive sealed behind iron grate chains",
+    "eclipse-omen": "Solar eclipse darkening the throne room as courtiers panic",
+    "emperor-mask-cracks": "Cracked imperial mask reflecting a fractured torchlit court",
+    "famine-charter": "Famine relief charter debated over empty grain bowls",
+    "slave-revolt": "Galley slaves breaking oars and chains in a harbor night riot",
+    "void-contract": "Stranger offering a blood-signed void contract in a black marble hall"
+  },
+  "origins": {
+    "orphan": {
+      "imageKey": "orphan-origin",
+      "sceneDescription": "Young orphan in a rainy medieval alley with warm lantern light"
+    },
+    "thief": {
+      "imageKey": "thief-origin",
+      "sceneDescription": "Masked thief on a rooftop above a wealthy city at moonlit night"
+    },
+    "dock-worker": {
+      "imageKey": "dock-worker-origin",
+      "sceneDescription": "Harbor worker carrying ropes beside giant merchant ships at foggy dawn"
+    },
+    "temple-acolyte": {
+      "imageKey": "temple-origin",
+      "sceneDescription": "Young temple acolyte in a candlelit sanctuary among mysterious relics"
+    },
+    "arena-fighter": {
+      "imageKey": "arena-origin",
+      "sceneDescription": "Arena fighter in blood-stained sand before a roaring colosseum crowd"
+    }
+  },
+  "endings": {
+    "starved-in-gutters": {
+      "imageKey": "dark-alley",
+      "sceneDescription": "Emaciated body beneath a bridge during a harsh winter funeral procession"
+    },
+    "buried-by-debt": {
+      "imageKey": "dark-alley",
+      "sceneDescription": "Rainy street with torn debt ledgers and empty merchant scales"
+    },
+    "executed-by-crown": {
+      "imageKey": "prison-cell",
+      "sceneDescription": "Public execution scaffold before a silent palace crowd at dawn"
+    },
+    "betrayed-by-your-own": {
+      "imageKey": "secret-meeting",
+      "sceneDescription": "Trusted ally turning away as a dagger gleams in a throne corridor"
+    },
+    "forgotten-clerk": {
+      "imageKey": "royal-court",
+      "sceneDescription": "Dusty clerk desk piled with forgotten scrolls in an empty office"
+    },
+    "minor-lord-ashford": {
+      "imageKey": "noble-feast",
+      "sceneDescription": "Small hill manor overlooking quiet provincial farmlands at dusk"
+    },
+    "silent-monk": {
+      "imageKey": "mountain-monastery",
+      "sceneDescription": "Mountain monastery perched on a cliff above misty eastern peaks"
+    },
+    "governor-western-gate": {
+      "imageKey": "border-war",
+      "sceneDescription": "City walls and western gate guarding a frontier caravan road"
+    },
+    "regent-behind-throne": {
+      "imageKey": "throne-room",
+      "sceneDescription": "Figure whispering behind an empty throne in mirrored hall shadows"
+    },
+    "grand-vizier": {
+      "imageKey": "throne-room",
+      "sceneDescription": "Grand vizier seated on a golden throne in a vast imperial hall"
+    }
+  }
+}

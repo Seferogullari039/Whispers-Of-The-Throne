@@ -1,0 +1,574 @@
+[
+  {
+    "filename": "orphan-crumbs.jpg",
+    "imageKey": "orphan-crumbs",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Orphan child hiding among funeral mourners outside palace gates at night",
+    "usedBy": [
+      "card:orphan-crumbs"
+    ]
+  },
+  {
+    "filename": "orphan-gate.jpg",
+    "imageKey": "orphan-gate",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Empty vizier throne draped in black beneath palace columns at dusk",
+    "usedBy": [
+      "card:orphan-gate"
+    ]
+  },
+  {
+    "filename": "thief-mark.jpg",
+    "imageKey": "thief-mark",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Thief guild master offering a stolen bronze vizier seal in a candlelit back room",
+    "usedBy": [
+      "card:thief-mark"
+    ]
+  },
+  {
+    "filename": "thief-patron.jpg",
+    "imageKey": "thief-patron",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Masked patron whispering conspiracy over gold coins in a shadowed tavern booth",
+    "usedBy": [
+      "card:thief-patron"
+    ]
+  },
+  {
+    "filename": "dock-signal.jpg",
+    "imageKey": "dock-signal",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Burning ships on the horizon as the harbor master rallies workers at dawn",
+    "usedBy": [
+      "card:dock-signal"
+    ]
+  },
+  {
+    "filename": "dock-manifest.jpg",
+    "imageKey": "dock-manifest",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Heavy incense-marked crate on the dock beside imperial customs guards",
+    "usedBy": [
+      "card:dock-manifest"
+    ]
+  },
+  {
+    "filename": "temple-vigil.jpg",
+    "imageKey": "temple-vigil",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Temple acolytes chanting at the vizier funeral vigil with incense smoke",
+    "usedBy": [
+      "card:temple-vigil"
+    ]
+  },
+  {
+    "filename": "temple-seal.jpg",
+    "imageKey": "temple-seal",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Ancient wax seal hidden beneath a temple altar stone",
+    "usedBy": [
+      "card:temple-seal"
+    ]
+  },
+  {
+    "filename": "arena-roar.jpg",
+    "imageKey": "arena-roar",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Arena crowd roaring as a fighter enters the blood-stained sand pit",
+    "usedBy": [
+      "card:arena-roar"
+    ]
+  },
+  {
+    "filename": "arena-patron.jpg",
+    "imageKey": "arena-patron",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Arena patron offering gold to a rising champion in torchlit tunnels",
+    "usedBy": [
+      "card:arena-patron"
+    ]
+  },
+  {
+    "filename": "vizier-procession.jpg",
+    "imageKey": "vizier-procession",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Vizier funeral procession winding through narrow capital streets",
+    "usedBy": [
+      "card:vizier-procession"
+    ]
+  },
+  {
+    "filename": "spymaster-audience.jpg",
+    "imageKey": "spymaster-audience",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Spymaster revealing a forged secret ledger in dungeon torchlight",
+    "usedBy": [
+      "card:spymaster-audience"
+    ]
+  },
+  {
+    "filename": "hungry-winter.jpg",
+    "imageKey": "hungry-winter",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Starving crowd outside sealed grain silos while palace feast lights glow",
+    "usedBy": [
+      "card:hungry-winter"
+    ]
+  },
+  {
+    "filename": "exiled-heir.jpg",
+    "imageKey": "exiled-heir",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Secret messenger meeting under a bridge about an exiled prince's armies",
+    "usedBy": [
+      "card:exiled-heir"
+    ]
+  },
+  {
+    "filename": "bishop-blessing.jpg",
+    "imageKey": "bishop-blessing",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Patriarch demanding tithe in a dark basilica before a kneeling courtier",
+    "usedBy": [
+      "card:bishop-blessing"
+    ]
+  },
+  {
+    "filename": "assassin-in-hall.jpg",
+    "imageKey": "assassin-in-hall",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Guards dragging a kitchen boy with a vizier dagger through a marble hall",
+    "usedBy": [
+      "card:assassin-in-hall"
+    ]
+  },
+  {
+    "filename": "trade-fleet.jpg",
+    "imageKey": "trade-fleet",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Silk merchant fleet anchored with disputed imperial customs documents",
+    "usedBy": [
+      "card:trade-fleet"
+    ]
+  },
+  {
+    "filename": "queen-mother.jpg",
+    "imageKey": "queen-mother",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Queen mother on a mirrored throne judging a young court aspirant",
+    "usedBy": [
+      "card:queen-mother"
+    ]
+  },
+  {
+    "filename": "tax-revolt.jpg",
+    "imageKey": "tax-revolt",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Angry merchants confronting scribes at the tax office square",
+    "usedBy": [
+      "card:tax-revolt"
+    ]
+  },
+  {
+    "filename": "servants-tale.jpg",
+    "imageKey": "servants-tale",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Palace servants whispering gossip near the war minister's door",
+    "usedBy": [
+      "card:servants-tale"
+    ]
+  },
+  {
+    "filename": "grain-auction.jpg",
+    "imageKey": "grain-auction",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Grain auction scales between a hungry crowd and a fixing patron",
+    "usedBy": [
+      "card:grain-auction"
+    ]
+  },
+  {
+    "filename": "court-poet.jpg",
+    "imageKey": "court-poet",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Court poet reciting satire before laughing and offended nobles",
+    "usedBy": [
+      "card:court-poet"
+    ]
+  },
+  {
+    "filename": "bridge-orphans.jpg",
+    "imageKey": "bridge-orphans",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Orphan children blocking an imperial bridge demanding scattered coins",
+    "usedBy": [
+      "card:bridge-orphans"
+    ]
+  },
+  {
+    "filename": "forged-decree.jpg",
+    "imageKey": "forged-decree",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Nervous scribe presenting a forged imperial decree with wax seal",
+    "usedBy": [
+      "card:forged-decree"
+    ]
+  },
+  {
+    "filename": "wine-cellar.jpg",
+    "imageKey": "wine-cellar",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Drunk duke confessing bribery in a palace wine cellar by torchlight",
+    "usedBy": [
+      "card:wine-cellar"
+    ]
+  },
+  {
+    "filename": "market-fire.jpg",
+    "imageKey": "market-fire",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Market district fire forcing a choice between ledgers and families upstairs",
+    "usedBy": [
+      "card:market-fire"
+    ]
+  },
+  {
+    "filename": "eunuch-envoy.jpg",
+    "imageKey": "eunuch-envoy",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Palace eunuch interrogating an official in a gilded antechamber",
+    "usedBy": [
+      "card:eunuch-envoy"
+    ]
+  },
+  {
+    "filename": "salt-riot.jpg",
+    "imageKey": "salt-riot",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Dock workers throwing salt at tax soldiers near the city gate",
+    "usedBy": [
+      "card:salt-riot"
+    ]
+  },
+  {
+    "filename": "library-flame.jpg",
+    "imageKey": "library-flame",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Eastern library fire threatening census scrolls and a scholar's hands",
+    "usedBy": [
+      "card:library-flame"
+    ]
+  },
+  {
+    "filename": "midnight-coup.jpg",
+    "imageKey": "midnight-coup",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Captain reporting midnight troop movement in palace corridors",
+    "usedBy": [
+      "card:midnight-coup"
+    ]
+  },
+  {
+    "filename": "the-wounded-boy.jpg",
+    "imageKey": "the-wounded-boy",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Wounded boy clutching a broken guard badge in an ash-covered alley",
+    "usedBy": [
+      "card:the-wounded-boy"
+    ]
+  },
+  {
+    "filename": "captain-remembers.jpg",
+    "imageKey": "captain-remembers",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Harbor captain offering spears in a tavern for a saved child's debt",
+    "usedBy": [
+      "card:captain-remembers"
+    ]
+  },
+  {
+    "filename": "cold-recognition.jpg",
+    "imageKey": "cold-recognition",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Harbor captain confronting a player who abandoned a wounded child",
+    "usedBy": [
+      "card:cold-recognition"
+    ]
+  },
+  {
+    "filename": "veiled-informant.jpg",
+    "imageKey": "veiled-informant",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Veiled informant sliding a coded note through a crowded market",
+    "usedBy": [
+      "card:veiled-informant"
+    ]
+  },
+  {
+    "filename": "whispered-ledger.jpg",
+    "imageKey": "whispered-ledger",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Whispered secret ledger passed between shadowed merchants",
+    "usedBy": [
+      "card:whispered-ledger"
+    ]
+  },
+  {
+    "filename": "closed-door.jpg",
+    "imageKey": "closed-door",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Closed council door with arguing silhouettes behind frosted glass",
+    "usedBy": [
+      "card:closed-door"
+    ]
+  },
+  {
+    "filename": "guild-charter.jpg",
+    "imageKey": "guild-charter",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Merchant guild signing a charter over sea maps and gold scales",
+    "usedBy": [
+      "card:guild-charter"
+    ]
+  },
+  {
+    "filename": "guild-hidden-docks.jpg",
+    "imageKey": "guild-hidden-docks",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Hidden smuggler dock unloading crates at midnight in fog",
+    "usedBy": [
+      "card:guild-hidden-docks"
+    ]
+  },
+  {
+    "filename": "guild-imperial-audit.jpg",
+    "imageKey": "guild-imperial-audit",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Imperial inspectors searching warehouse ledgers and cargo",
+    "usedBy": [
+      "card:guild-imperial-audit"
+    ]
+  },
+  {
+    "filename": "noble-feast.jpg",
+    "imageKey": "noble-feast",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Veldran noble feast with overflowing wine and guarded laughter",
+    "usedBy": [
+      "card:noble-feast",
+      "ending:minor-lord-ashford"
+    ]
+  },
+  {
+    "filename": "noble-blood-oath.jpg",
+    "imageKey": "noble-blood-oath",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Nobles cutting palms for a blood oath over a candlelit table",
+    "usedBy": [
+      "card:noble-blood-oath"
+    ]
+  },
+  {
+    "filename": "noble-scandal.jpg",
+    "imageKey": "noble-scandal",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Noble scandal whispers spreading through a banquet hall of mirrors",
+    "usedBy": [
+      "card:noble-scandal"
+    ]
+  },
+  {
+    "filename": "temple-reliquary.jpg",
+    "imageKey": "temple-reliquary",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. First emperor reliquary glowing in a silent temple crypt",
+    "usedBy": [
+      "card:temple-reliquary"
+    ]
+  },
+  {
+    "filename": "temple-heresy.jpg",
+    "imageKey": "temple-heresy",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Heresy trial with a chained acolyte before temple judges",
+    "usedBy": [
+      "card:temple-heresy"
+    ]
+  },
+  {
+    "filename": "temple-pilgrimage.jpg",
+    "imageKey": "temple-pilgrimage",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Pilgrim caravan crossing desert toward a distant sacred peak",
+    "usedBy": [
+      "card:temple-pilgrimage"
+    ]
+  },
+  {
+    "filename": "arena-challenge.jpg",
+    "imageKey": "arena-challenge",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Foreign arena champion insulting the imperial banner before a roaring crowd",
+    "usedBy": [
+      "card:arena-challenge"
+    ]
+  },
+  {
+    "filename": "arena-bloody-title.jpg",
+    "imageKey": "arena-bloody-title",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Fighter raising a bloody arena title belt amid cheering tiers",
+    "usedBy": [
+      "card:arena-bloody-title"
+    ]
+  },
+  {
+    "filename": "arena-fixed-reckoning.jpg",
+    "imageKey": "arena-fixed-reckoning",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Fixed arena duel with a bribed referee and tense gamblers",
+    "usedBy": [
+      "card:arena-fixed-reckoning"
+    ]
+  },
+  {
+    "filename": "wounded-boy-legacy.jpg",
+    "imageKey": "wounded-boy-legacy",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Saved wounded boy testifying before a nervous magistrate",
+    "usedBy": [
+      "card:wounded-boy-legacy"
+    ]
+  },
+  {
+    "filename": "informant-last-whisper.jpg",
+    "imageKey": "informant-last-whisper",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Dying informant delivering a final whisper in a rainy alley",
+    "usedBy": [
+      "card:informant-last-whisper"
+    ]
+  },
+  {
+    "filename": "the-great-plague.jpg",
+    "imageKey": "the-great-plague",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Plague carts and masked citizens in an abandoned capital street",
+    "usedBy": [
+      "card:the-great-plague"
+    ]
+  },
+  {
+    "filename": "royal-inspection.jpg",
+    "imageKey": "royal-inspection",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Imperial inspectors auditing merchant records in a torchlit warehouse",
+    "usedBy": [
+      "card:royal-inspection"
+    ]
+  },
+  {
+    "filename": "border-war.jpg",
+    "imageKey": "border-war",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Border fortress silhouettes against distant war campfires",
+    "usedBy": [
+      "card:border-war",
+      "ending:governor-western-gate"
+    ]
+  },
+  {
+    "filename": "assassin-offer.jpg",
+    "imageKey": "assassin-offer",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Hooded assassin offering a sealed murder contract by candlelight",
+    "usedBy": [
+      "card:assassin-offer"
+    ]
+  },
+  {
+    "filename": "forbidden-archive.jpg",
+    "imageKey": "forbidden-archive",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Forbidden imperial archive sealed behind iron grate chains",
+    "usedBy": [
+      "card:forbidden-archive"
+    ]
+  },
+  {
+    "filename": "eclipse-omen.jpg",
+    "imageKey": "eclipse-omen",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Solar eclipse darkening the throne room as courtiers panic",
+    "usedBy": [
+      "card:eclipse-omen"
+    ]
+  },
+  {
+    "filename": "emperor-mask-cracks.jpg",
+    "imageKey": "emperor-mask-cracks",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Cracked imperial mask reflecting a fractured torchlit court",
+    "usedBy": [
+      "card:emperor-mask-cracks"
+    ]
+  },
+  {
+    "filename": "famine-charter.jpg",
+    "imageKey": "famine-charter",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Famine relief charter debated over empty grain bowls",
+    "usedBy": [
+      "card:famine-charter"
+    ]
+  },
+  {
+    "filename": "slave-revolt.jpg",
+    "imageKey": "slave-revolt",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Galley slaves breaking oars and chains in a harbor night riot",
+    "usedBy": [
+      "card:slave-revolt"
+    ]
+  },
+  {
+    "filename": "void-contract.jpg",
+    "imageKey": "void-contract",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Stranger offering a blood-signed void contract in a black marble hall",
+    "usedBy": [
+      "card:void-contract"
+    ]
+  },
+  {
+    "filename": "orphan-origin.jpg",
+    "imageKey": "orphan-origin",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Young orphan in a rainy medieval alley with warm lantern light",
+    "usedBy": [
+      "origin:orphan"
+    ]
+  },
+  {
+    "filename": "thief-origin.jpg",
+    "imageKey": "thief-origin",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Masked thief on a rooftop above a wealthy city at moonlit night",
+    "usedBy": [
+      "origin:thief"
+    ]
+  },
+  {
+    "filename": "dock-worker-origin.jpg",
+    "imageKey": "dock-worker-origin",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Harbor worker carrying ropes beside giant merchant ships at foggy dawn",
+    "usedBy": [
+      "origin:dock-worker"
+    ]
+  },
+  {
+    "filename": "temple-origin.jpg",
+    "imageKey": "temple-origin",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Young temple acolyte in a candlelit sanctuary among mysterious relics",
+    "usedBy": [
+      "origin:temple-acolyte"
+    ]
+  },
+  {
+    "filename": "arena-origin.jpg",
+    "imageKey": "arena-origin",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Arena fighter in blood-stained sand before a roaring colosseum crowd",
+    "usedBy": [
+      "origin:arena-fighter"
+    ]
+  },
+  {
+    "filename": "dark-alley.jpg",
+    "imageKey": "dark-alley",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Emaciated body beneath a bridge during a harsh winter funeral procession",
+    "usedBy": [
+      "ending:starved-in-gutters",
+      "ending:buried-by-debt"
+    ]
+  },
+  {
+    "filename": "prison-cell.jpg",
+    "imageKey": "prison-cell",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Public execution scaffold before a silent palace crowd at dawn",
+    "usedBy": [
+      "ending:executed-by-crown"
+    ]
+  },
+  {
+    "filename": "secret-meeting.jpg",
+    "imageKey": "secret-meeting",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Trusted ally turning away as a dagger gleams in a throne corridor",
+    "usedBy": [
+      "ending:betrayed-by-your-own"
+    ]
+  },
+  {
+    "filename": "royal-court.jpg",
+    "imageKey": "royal-court",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Dusty clerk desk piled with forgotten scrolls in an empty office",
+    "usedBy": [
+      "ending:forgotten-clerk"
+    ]
+  },
+  {
+    "filename": "mountain-monastery.jpg",
+    "imageKey": "mountain-monastery",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Mountain monastery perched on a cliff above misty eastern peaks",
+    "usedBy": [
+      "ending:silent-monk"
+    ]
+  },
+  {
+    "filename": "throne-room.jpg",
+    "imageKey": "throne-room",
+    "prompt": "Stylized 2D dark fantasy card illustration, painterly vector style, simplified shapes, friendly dark fantasy mood, warm readable colors, mobile card game artwork, Reigns inspired composition, portrait 9:16 illustration, elegant silhouettes, no photorealism, no realism, no 3D render, no text, no logo, no watermark. Figure whispering behind an empty throne in mirrored hall shadows",
+    "usedBy": [
+      "ending:regent-behind-throne",
+      "ending:grand-vizier"
+    ]
+  }
+]
